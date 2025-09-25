@@ -129,7 +129,7 @@ iframe
 }
 
 
-@media screen and (max-width: 0px) /*Disabling mobile on desktop view for now*/
+@media screen and (max-width: 1200px) /*767*/
 {
     .formContainer
     {
