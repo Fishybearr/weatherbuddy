@@ -73,7 +73,7 @@ for($i = 0; $i <= 23; $i++)
 		//echo("Temp: " . $hourlyTemps[$i]);
 
 		$hourlyPrecip[$i] = $parsedJSON['hourly']['precipitation_probability'][$i];
-		echo($hourlyPrecip[$i]);
+		echo($hourlyPrecip[$i]); //TODO: This needs to get handled and used instead of just printing 
 	}
 
 
@@ -87,7 +87,7 @@ $modifiedHTML = str_replace('|IMAGE_PATH|',$imagePath,$htmlBlock);
 $modifiedHTML = str_replace('Current Temp:',"Current Temp: $currTemp $tempUnit",$modifiedHTML);
 $modifiedHTML = str_replace('|HL|', "High: $dailyHigh $tempUnit Low: $dailyLow $tempUnit",$modifiedHTML);
 
-for($i = 5; $i <= 20; $i++)
+for($i = 5; $i <= 20; $i++) //Some kind of bug here where the am/pm is not right for most of the hours
 	{
 		if($i < 13)
 			{

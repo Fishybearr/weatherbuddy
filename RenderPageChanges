@@ -1,2 +1,6 @@
 Set stylesheet path to "../RenderPage.css"
 Set image path to "|IMAGE_PATH|"
+
+Move the actual clothes to wear thing to the top of the iframe
+
+probably remove the shadow from the clothes image since it has a transparent bk
