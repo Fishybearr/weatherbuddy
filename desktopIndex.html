@@ -1,36 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<link rel="stylesheet" href="main.css">
-<meta charset="UTF-8">
+    <link rel="stylesheet" href="main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Outfit Weather App</title>
 </head>
 
-<h2>This is a development build. The core functionality is in place, but the visuals will change</h2>
+<body class="dark-mode"> 
 
-<div class="centerContent">
+    <header>
+        <h2>This is a development build. The core functionality is in place, but the visuals will change</h2>
+    </header>
 
-<div class="formContainer">
+    <div class="centerContent">
+        <div class="formContainer">
 
-	<div class="Logo">
-		<img src="images/city.png" width="50px">
-	</div>
+            <div class="Logo">
+                <img src="images/city.png" width="50px" alt="City Logo/Icon">
+            </div>
 
-<form action="/phpFiles/getWeather.php" method="post" target="weatherDisplay">
-	
-	<div class="inputContainer">
-	<div class="textBoxHolder">
-		<img src="images/search.png" width="30px">
-		<input class="textBox" type="text" id="city" name="city" placeholder="City Name"></input>
-	</div>
+            <form action="/phpFiles/getWeather.php" method="post" target="weatherDisplay">
+                
+                <div class="inputContainer">
+                    
+                    <div class="textBoxHolder">
+                        <img src="images/search.png" width="20px" alt="Search Icon" style="margin-left: 10px;">
+                        <input class="textBox" type="text" id="city" name="city" placeholder="Enter City Name"></input>
+                    </div>
 
-	<div class="smallTextBoxHolder">
-	<input class="smallTextBox" type="text" id="lat" name="lat" placeholder="Latitude"></input>
-	<input class="smallTextBox" type="text" id="long" name ="long" placeholder="Longitude"></input>
-	</div>
-	<div class="smallTextBoxHolder">
-	<input class="submitButton" type="submit" id="sub" name="sub" value="Make My Outfit"></input>
-	</div>
-	<br>
+                    <div class="smallTextBoxHolder">
+                        <input class="smallTextBox" type="number" step="any" id="lat" name="lat" placeholder="Latitude"></input>
+                        <input class="smallTextBox" type="number" step="any" id="long" name="long" placeholder="Longitude"></input>
+                    </div>
 
-</form>
-</div>
-<iframe class="iframe" name="weatherDisplay" src="RenderPage.html" width="100%" height="100%"></iframe>
+                    <input class="submitButton" type="submit" id="sub" name="sub" value="Make My Outfit">
+                
+                </div> </form>
 
+            <iframe class="iframe" name="weatherDisplay" src="RenderPage.html" title="Weather Display Frame" width="100%" height="450px"></iframe>
+
+        </div> </div> </body>
+</html>

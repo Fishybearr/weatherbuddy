@@ -1,165 +1,242 @@
+/* Color Variables for easy theme management */
+:root {
+    /* Main Light Theme Colors */
+    --clr-bg-light: #f5f7fa; /* Near white background */
+    --clr-bg-primary: rgb(14, 38, 66); /* Original body background for contrast */
+    --clr-text-light: whitesmoke;
+    --clr-text-dark: #333333; /* Dark text for light elements */
+    --clr-input-bg: #ffffff;
+    --clr-border-subtle: #e0e0e0;
+    --clr-accent-blue: #007bff; /* A modern blue accent */
+    --clr-accent-hover: #0056b3;
+    --clr-form-bg-overlay: rgba(255, 255, 255, 0.9); /* Subtle, slightly transparent white for light mode form background */
 
-/*USE rgb(40,40,64) for background color for dark mode*/
-/*
-body
-{
-	background-color: rgb(14,38,66);
-	color: whitesmoke;
+    /* Dark Mode Colors (use this for .dark-mode or when the theme toggle is active) */
+    --clr-bg-dark: rgb(40, 40, 64);
+    --clr-form-bg-dark: rgba(25, 25, 40, 0.9); /* Darker, subtle background for the form container */
+    --clr-input-bg-dark: #444466;
+    --clr-text-dark-mode: whitesmoke;
 }
-	*/
 
-.centerContent
-{
-	display: flex;
-	align-items: center;
-	justify-content: center;
+/* Base and Background */
+html {
+    height: 100%;
+    /* Ensure no unexpected scroll on the HTML element */
+    overflow-y: auto; 
+}
+
+body {
+    height: 100%;
     margin: 0;
-	height: 80%; /*Sets the height of the Panel*/
+    /* Apply light mode defaults */
+    background-color: var(--clr-bg-primary); 
+    color: var(--clr-text-light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* A professional, legible font */
+    line-height: 1.6;
+    
+    /* Background Image Styling - Slicker appearance */
+    background-image: url(images/clouds.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    /* Fixed background to create a depth effect on scroll */
+    background-attachment: fixed;
 }
 
-
-.formContainer
-{
-	width: 70%;
-	height: 80%;
-	/*background-color: violet;*/
+/* Dark Mode Implementation (optional class for a toggle) */
+.dark-mode {
+    background-color: var(--clr-bg-dark);
+    color: var(--clr-text-dark-mode);
 }
 
-.inputContainer
-{
-	display: grid;
-	align-items: center;
-	justify-content: center;
+/* Center Content - Changed height to min-height for better content flow */
+.centerContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Use min-height to ensure it takes up 100% of the viewport height if content is short */
+    min-height: 100vh; 
+    padding: 20px; /* Add padding for breathing room */
+    box-sizing: border-box; /* Include padding/border in element's total width/height */
 }
 
-.textBoxHolder
-{
-    border-radius: 15px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: white;
-	border-color: black;
-	border-width: 1px;
-	border-style: solid;
-	margin: 5px;
+/* Form Container - Centralized and styled for focus */
+.formContainer {
+    width: 90%; /* Start wider for better responsiveness */
+    max-width: 600px; /* Set a comfortable maximum width */
+    padding: 30px;
+    border-radius: 12px;
+    background-color: var(--clr-form-bg-overlay); /* Light, semi-transparent background */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Soft, professional shadow */
+    box-sizing: border-box;
+    /* Transition for subtle effect on theme change/updates */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
 }
 
-.smallTextBoxHolder
-{
-	 border-radius: 15px;
-	display: flex;
-	align-items: center;
-	margin: 0 auto;
-	/*justify-content: center;*/
+/* Dark Mode Form Styling */
+.dark-mode .formContainer {
+    background-color: var(--clr-form-bg-dark);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
 }
 
-.textBox
-{
-    width: 400px;
-	border-radius: 15px;
-	background-color: white;
-	/*margin: 5px;
-	padding: 5px;*/
-	padding: 5px;
-	border: none;
+/* Input Container - Clean grid for alignment */
+.inputContainer {
+    display: grid;
+    gap: 15px; /* Spacing between grid items */
+    align-items: center;
+    justify-items: stretch; /* Stretch items to fill the grid column */
 }
 
+/* Text Box Holder - Focus on accessibility and clean lines */
+.textBoxHolder,
+.smallTextBoxHolder {
+    display: flex;
+    align-items: center;
+    border-radius: 8px; /* Slightly less rounded than 15px for a sleeker look */
+    border: 1px solid var(--clr-border-subtle);
+    background-color: var(--clr-input-bg);
+    margin: 0; /* Remove margin from here, use .inputContainer gap instead */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease-in-out; /* Smooth transition for focus effect */
+    padding: 5px; /* Padding for the holder is minimal, the padding is mainly on the input */
+}
+
+/* Dark Mode Input Styling */
+.dark-mode .textBoxHolder,
+.dark-mode .smallTextBoxHolder {
+    background-color: var(--clr-input-bg-dark);
+    border-color: #555577;
+}
+
+.textBoxHolder:focus-within,
+.smallTextBoxHolder:focus-within {
+    border-color: var(--clr-accent-blue);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Subtle blue ring on focus */
+}
+
+/* Text Box (Input/Textarea) */
+.textBox {
+    width: 100%; /* Fill the container */
+    max-width: none; /* Override old fixed width */
+    padding: 10px 15px; /* Increased padding for better click/touch area and spacing */
+    border: none;
+    border-radius: 6px; /* Match holder but slightly smaller */
+    background-color: transparent; /* Essential for the holder's background to show */
+    color: var(--clr-text-dark); /* Ensure text is readable against the white background */
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+/* Dark Mode Input Text Color */
+.dark-mode .textBox {
+    color: var(--clr-text-dark-mode);
+}
+
+/* Remove default outline on focus */
 input:focus,
-textarea:focus
-{
-	outline: none;
+textarea:focus {
+    outline: none;
 }
 
-.smallTextBox
-{
-	width: 100px;
-	border-radius: 15px;
-	background-color: white;
-	margin: 5px;
-	padding: 5px;
-	text-align: center;
+/* Small Text Box - Use flex-grow: 1 on the inner input to handle smallTextBoxHolder centering */
+.smallTextBoxHolder {
+    max-width: 150px; /* Set a reasonable max width for small inputs */
 }
 
-.submitButton
-{
-	padding: 5px;
-	width: 200px;
-	border-radius: 10px;
+.smallTextBox {
+    width: 100%;
+    padding: 8px 10px;
+    margin: 0; /* Remove margin, use padding */
+    border-radius: 6px;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    color: var(--clr-text-dark);
+    font-size: 16px;
 }
 
-.Logo
-{
-	display: grid;
-	align-items: center;
-	justify-content: center;
-	margin-top: -20px;
-	margin-bottom: 10px;
+.dark-mode .smallTextBox {
+    color: var(--clr-text-dark-mode);
 }
 
-
-/*TODO: body and html 100% heights are prob causing scrolling on full screen*/
-body
-{
-	background-image: url(images/clouds.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center center;
-	height: 100%;
+/* Submit Button - Clear, interactive, and attractive */
+.submitButton {
+    padding: 12px 20px; /* Generous padding */
+    width: 100%; /* Default to full width in container */
+    max-width: 250px; /* Max width to prevent stretching too far */
+    display: block; /* Center the button if less than 100% width */
+    margin: 15px auto 0; /* Center horizontally and add top margin */
+    border-radius: 8px;
+    border: none;
+    background-color: var(--clr-accent-blue);
+    color: var(--clr-text-light);
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+    transition: all 0.3s ease;
 }
 
-html
-{
-	height: 100%;
+.submitButton:hover {
+    background-color: var(--clr-accent-hover);
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.5);
+    transform: translateY(-2px); /* Subtle lift effect */
 }
 
-.iframe
-{
-	background-color: rgba(37, 30, 67, .58);
-	border: none;
-	border-radius: 20px;
-	margin-bottom: 20px;
-	height: 110%;
-	display: block;
+.submitButton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
 }
 
-iframe
-{
-	height: 800%;
+/* Logo - Adjusted spacing and alignment */
+.Logo {
+    display: flex; /* Use flex for simpler centering */
+    justify-content: center;
+    align-items: center;
+    margin-top: 0; 
+    margin-bottom: 25px; /* Increased margin for better separation */
 }
 
+/* Iframe Container - Apply modern glassmorphism effect */
+.iframe {
+    /* Use a fixed, darker background for the iframe to stand out */
+    background-color: rgba(30, 30, 45, 0.65); 
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border for the "glass" look */
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding: 15px; /* Add padding inside the container */
+    display: block;
+    width: 100%; 
+    height: auto; /* Let content dictate height, or set max-height */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px); /* Glassmorphism effect */
+    -webkit-backdrop-filter: blur(4px); /* For Safari */
+}
 
-@media screen and (max-width: 0px) /*Disabling mobile on desktop view for now*/
-{
-    .formContainer
-    {
+iframe {
+    width: 100%; /* iframe inside its container */
+    height: 400px; /* Set a default, reasonable height for the iframe content */
+    border: none; /* Ensure no visible border */
+    border-radius: 15px;
+    display: block;
+}
+
+/* Media Queries (Responsive Design) */
+
+/* Target mobile devices up to 768px */
+@media screen and (max-width: 768px) {
+    .formContainer {
         width: 100%;
-		/*height: 185%;
-		margin-top: 700px;
-		*/
-		
-
+        max-width: none;
+        padding: 20px 15px; /* More compact padding on mobile */
+        border-radius: 0; /* Optional: remove border-radius on full-width mobile form */
     }
-	/*
-	body
-	{
-		overflow-y: hidden;
-	}
-		*/
 
-	
-	.iframe
-	{
-		padding-top: 10px;
-		padding-bottom: 10px;
-		margin-bottom: 20px;
-		height: 100%;
-		 /*remove this because it does not work*/
-	}
+    .centerContent {
+        padding: 0; /* Remove padding when form is full width */
+    }
 
-
-	.centerContent
-	{
-		width: 100%;
-	}
+    .textBox {
+        font-size: 14px; /* Slightly smaller text for mobile */
+    }
 }
