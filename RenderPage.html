@@ -1,76 +1,59 @@
 <head>
-    <link rel="stylesheet" href="../RenderPage.css">
+    <link rel="stylesheet" href="../RenderPage.css"> 
 </head>
 
 <div class="Panels">
     <div class="LeftPanel" id="LeftPanel">
-        <p>Current Temp:</p>
+        <h3>Current Weather</h3> <p>Current Temp: **|TEMP|°F**</p> 
         
-        <p>|HL|</p>
+        <p>High/Low: **|HL|**</p>
         
-        <p>Chance of rain in next</p>
+        <p>Chance of rain in next:</p>
         <form>
-        <label for="1Hour" >1 Hour</label>
-        <input type="radio" id="1Hour" name="Hours" checked>
-        <br>
+            <div class="radio-group"> <label for="1Hour">
+                    <input type="radio" id="1Hour" name="Hours" checked> 1 Hour
+                </label>
+                
+                <label for="2Hour">
+                    <input type="radio" id="2Hour" name="Hours"> 2 Hours
+                </label>
+                
+                <label for="4Hour">
+                    <input type="radio" id="4Hour" name="Hours"> 4 Hours
+                </label>
+            </div>
 
-        <label for="2Hour">2 Hours</label>
-        <input type="radio"id="2Hour" name="Hours">
-        <br>
-
-        <label for="4Hour">4 Hours</label>
-        <input type="radio"id="4Hour" name="Hours">
-        <p>:% </p>
+            <p>Rain Chance: <span class="rain-percent">**|RAIN_PERCENT|**%</span> </p> 
         </form>
-</div>
-
-<div class="MidPanel" id="MidPanel">
-    <div class="dressMenu" id="DressMenu">
-        <h2>Dress For</h2>
-        <button class="dressButtons">Current</button>
-        <button class="dressButtons"> All Day</button>
-        <img class="dressImg" src="|IMAGE_PATH|">
     </div>
-    
 
-</div>
+    <div class="MidPanel" id="MidPanel">
+        <div class="dressMenu" id="DressMenu">
+            <h2>Dress For</h2>
+            <button class="dressButtons">Current</button>
+            <button class="dressButtons">All Day</button>
+            <img class="dressImg" src="|IMAGE_PATH|" alt="Recommended Outfit">
+        </div>
+    </div>
 
-<div class="RightPanel" id="RightPanel">
-    <p>
-        Today's Forcast:
-        <br>
-4:00
-<br>
-5:00
-<br>
-6:00
-<br>
-7:00
-<br>
-8:00
-<br>
-9:00
-<br>
-10:00
-<br>
-11:00
-<br>
-12:00
-<br>
-13p:00
-<br>
-14p:00
-<br>
-15p:00
-<br>
-16p:00
-<br>
-17p:00
-<br>
-18p:00
-<br>
-19p:00
-    </p>
+    <div class="RightPanel" id="RightPanel">
+        <p>Today's Forecast:</p>
+        <div class="hourly-forecast"> 4:00
+            5:00
+            6:00
+            7:00
+            8:00
+            9:00
+            10:00
+            11:00
+            12:00
+            13:00
+            14:00
+            15:00
+            16:00
+            17:00
+            18:00
+            19:00
+        </div>
+    </div>
 </div>
-</div>
-

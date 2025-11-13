@@ -1,118 +1,175 @@
-.Panels
-{
+/* Color variables for consistency with the main page */
+:root {
+    /* Define variables if they aren't inherited, or copy the necessary ones from main.css */
+    --clr-form-bg-overlay: rgba(30, 30, 45, 0.65); /* Use the iframe background color for the panels */
+    --clr-text-light: whitesmoke;
+    --clr-accent-blue: #007bff;
+    --clr-accent-hover: #0056b3;
+    --clr-border-subtle: rgba(255, 255, 255, 0.1); /* Subtle white border for the "glass" look */
+}
+
+/* Overall Panel Container */
+.Panels {
     display: flex;
-    margin: 0 auto;
+    justify-content: space-between; /* Ensures even distribution */
     gap: 20px;
-    height: 100%;
+    margin: 0 auto;
+    width: 100%;
+    /* Ensure the iframe content itself scrolls if needed, not the main page */
+    overflow-y: auto; 
+    height: 100%; /* Important for taking up the full iframe height */
+    box-sizing: border-box;
+    padding: 10px; /* Internal padding to keep content off the iframe edges */
 }
 
-
-.LeftPanel
-{
+/* Individual Panels (Left, Mid, Right) - Unified Styling */
+.LeftPanel,
+.MidPanel,
+.RightPanel {
     flex: 1;
-    border-radius: 20px;
-    padding: 20px;
-    text-align: left;
-    background-color: rgba(37, 30, 67, .58);
-    min-height: 400px;
+    min-height: 450px; /* Slightly taller minimum height */
+    padding: 25px; /* Increased padding for more breathing room */
+    border-radius: 15px; /* Consistent rounding */
     
+    /* Blending/Glassmorphism Effect - Match the main page's .iframe style */
+    background-color: var(--clr-form-bg-overlay); 
+    color: var(--clr-text-light); /* Ensure text is white */
+    border: 1px solid var(--clr-border-subtle); 
+    backdrop-filter: blur(4px); /* For seamless blending */
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: all 0.3s ease; /* Smooth hover effect transition */
 }
 
+/* Hover effect on panels for subtle interaction */
+.LeftPanel:hover,
+.MidPanel:hover,
+.RightPanel:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
 
-.MidPanel
-{
-    flex: 1;
-    border-radius: 20px;
-    padding: 20px;
+/* Text and Headings */
+h2 {
+    font-weight: 600;
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1); /* Subtle separator */
+    padding-bottom: 10px;
+}
+
+p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+/* Left Panel - Weather Details and Radio Buttons */
+.LeftPanel p {
+    font-weight: 500;
+}
+
+.LeftPanel form {
+    margin-top: 15px;
+}
+
+.LeftPanel label {
+    display: block; /* Stack labels and input */
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.LeftPanel input[type="radio"] {
+    margin-right: 8px;
+    /* Customizing radio buttons is complex; keeping default for simplicity unless custom styling is desired */
+}
+
+/* Mid Panel - Dress Menu and Image */
+.MidPanel {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    background-color: rgba(37, 30, 67, .58);
-    min-height: 400px;
-}
-
-.RightPanel
-{
-    flex: 1;
-    border-radius: 20px;
-    padding: 20px;
-    text-align: left;
-    background-color: rgba(37, 30, 67, .58);
-    min-height: 400px;
-
-    
-}
-
-.dressMenu
-{
-    flex: 1;
+    justify-content: flex-start; /* Align content to the top */
     text-align: center;
 }
 
-.dressImg
-{
-    width: 60%;
-    height: auto;
-    padding-left: 25px;
-    margin-top: 20px;
+.dressMenu {
+    width: 100%;
+    /* No flex: 1 here, let its content define its size */
 }
 
-.dressButtons
-{
-    background-color: rgb(0, 120, 210);
-    padding: 5px 5px 5px 5px;
-    border-radius: 5px;
+.dressButtons {
+    background-color: var(--clr-accent-blue);
+    padding: 10px 15px;
+    border-radius: 6px;
     border: none;
-    color: whitesmoke;
-    font-size: 80%;
-    margin-right: 2px;
-    margin-left: 2px;
-    margin-bottom: 5px;
+    color: var(--clr-text-light);
+    font-size: 1em;
+    font-weight: 500;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
     
+    width: 45%; /* Use a percentage for two buttons side-by-side */
+    max-width: 150px; /* Prevent buttons from getting too wide */
+}
 
-        width: 30%;
-        min-width: 100px;
-        height: auto;
+.dressButtons:hover {
+    background-color: var(--clr-accent-hover);
+    transform: translateY(-1px);
+}
+
+.dressImg {
+    width: 80%; /* Increased size */
+    max-width: 250px; /* Set a max width for large screens */
+    height: auto;
+    padding: 0; /* Removed padding */
+    margin-top: 30px;
+    border-radius: 10px; /* Slight rounding for the image */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Image shadow for pop */
+    object-fit: contain; /* Ensure the clothing image is not cropped */
+}
+
+/* Right Panel - Hourly Forecast */
+.RightPanel p {
+    font-family: monospace; /* Monospace font for aligned time display */
+    line-height: 1.8; /* Increased line height for readability */
+    white-space: pre-wrap; /* Allows line breaks from HTML to be respected */
 }
 
 
-
-@media screen and (max-width: 1000px) /*500*/
-{
-    /*
-    .LeftPanel
-    {
-        background-color: aqua;
+/* Responsive Design */
+@media screen and (max-width: 1000px) {
+    .Panels {
+        flex-direction: column; /* Stack panels vertically on smaller screens */
+        gap: 10px;
+        padding: 5px;
     }
 
-    .MidPanel
-    {
-        background-color: aqua;
-         align-items: center;
-    }
-         */
-    .dressButtons
-    {
-        padding: none;
-        width: 30%;
-        height: auto;
-    }
-    .Panels
-    {
-        display: inline;
-        height: 100%;
+    .LeftPanel,
+    .MidPanel,
+    .RightPanel {
+        min-height: auto; /* Allow height to collapse to content */
+        padding: 20px;
     }
 
-    .LeftPanel
-    {
-        border-radius: 20px 20px 0px 0px;
+    .LeftPanel {
+        border-radius: 15px 15px 0 0;
     }
 
-    .MidPanel
-    {
-        border-radius: 0px;
+    .MidPanel {
+        border-radius: 0;
     }
 
-    .RightPanel
-    {
-        border-radius: 0px 0px 20px 20px;
+    .RightPanel {
+        border-radius: 0 0 15px 15px;
+    }
+    
+    .dressButtons {
+        width: 48%; 
+    }
+    
+    .dressImg {
+        width: 60%;
+        max-width: 300px;
     }
 }
