@@ -1,19 +1,19 @@
 /* Color Variables for easy theme management */
 :root {
     /* Main Light Theme Colors */
-    --clr-bg-light: #f5f7fa; /* Near white background */
-    --clr-bg-primary: rgb(14, 38, 66); /* Original body background for contrast */
+    --clr-bg-light: #f5f7fa;
+    --clr-bg-primary: rgb(14, 38, 66);
     --clr-text-light: whitesmoke;
-    --clr-text-dark: #333333; /* Dark text for light elements */
+    --clr-text-dark: #333333;
     --clr-input-bg: #ffffff;
     --clr-border-subtle: #e0e0e0;
-    --clr-accent-blue: #007bff; /* A modern blue accent */
+    --clr-accent-blue: #007bff;
     --clr-accent-hover: #0056b3;
-    --clr-form-bg-overlay: rgba(255, 255, 255, 0.9); /* Subtle, slightly transparent white for light mode form background */
+    --clr-form-bg-overlay: rgba(255, 255, 255, 0.9);
 
-    /* Dark Mode Colors (use this for .dark-mode or when the theme toggle is active) */
+    /* Dark Mode Colors */
     --clr-bg-dark: rgb(40, 40, 64);
-    --clr-form-bg-dark: rgba(25, 25, 40, 0.9); /* Darker, subtle background for the form container */
+    --clr-form-bg-dark: rgba(25, 25, 40, 0.9);
     --clr-input-bg-dark: #444466;
     --clr-text-dark-mode: whitesmoke;
 }
@@ -21,25 +21,20 @@
 /* Base and Background */
 html {
     height: 100%;
-    /* Ensure no unexpected scroll on the HTML element */
-    overflow-y: auto; 
+    overflow-y: auto;
 }
 
 body {
     height: 100%;
     margin: 0;
-    /* Apply light mode defaults */
-    background-color: var(--clr-bg-primary); 
+    background-color: var(--clr-bg-primary);
     color: var(--clr-text-light);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* A professional, legible font */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    
-    /* Background Image Styling - Slicker appearance */
     background-image: url(images/clouds.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    /* Fixed background to create a depth effect on scroll */
     background-attachment: fixed;
 }
 
@@ -49,56 +44,54 @@ body {
     color: var(--clr-text-dark-mode);
 }
 
-/* Center Content - Changed height to min-height for better content flow */
+/* Center Content */
 .centerContent {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Changed to start alignment, giving preference to the top */
     justify-content: center;
-    /* Use min-height to ensure it takes up 100% of the viewport height if content is short */
-    min-height: 100vh; 
-    padding: 20px; /* Add padding for breathing room */
-    box-sizing: border-box; /* Include padding/border in element's total width/height */
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-/* Form Container - Centralized and styled for focus */
+/* --- Increased Width for Form Container --- */
 .formContainer {
-    width: 90%; /* Start wider for better responsiveness */
-    max-width: 600px; /* Set a comfortable maximum width */
+    width: 90%;
+    max-width: 900px; /* **Increased Max Width (was 600px)** */
     padding: 30px;
     border-radius: 12px;
-    background-color: var(--clr-form-bg-overlay); /* Light, semi-transparent background */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Soft, professional shadow */
+    background-color: var(--clr-form-bg-overlay);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     box-sizing: border-box;
-    /* Transition for subtle effect on theme change/updates */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Dark Mode Form Styling */
 .dark-mode .formContainer {
     background-color: var(--clr-form-bg-dark);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* Input Container - Clean grid for alignment */
 .inputContainer {
     display: grid;
-    gap: 15px; /* Spacing between grid items */
+    gap: 15px;
     align-items: center;
-    justify-items: stretch; /* Stretch items to fill the grid column */
+    justify-items: stretch;
 }
 
-/* Text Box Holder - Focus on accessibility and clean lines */
+/* Text Box Holder */
 .textBoxHolder,
 .smallTextBoxHolder {
     display: flex;
     align-items: center;
-    border-radius: 8px; /* Slightly less rounded than 15px for a sleeker look */
+    border-radius: 8px;
     border: 1px solid var(--clr-border-subtle);
     background-color: var(--clr-input-bg);
-    margin: 0; /* Remove margin from here, use .inputContainer gap instead */
+    margin: 0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    transition: all 0.2s ease-in-out; /* Smooth transition for focus effect */
-    padding: 5px; /* Padding for the holder is minimal, the padding is mainly on the input */
+    transition: all 0.2s ease-in-out;
+    padding: 5px;
 }
 
 /* Dark Mode Input Styling */
@@ -111,18 +104,18 @@ body {
 .textBoxHolder:focus-within,
 .smallTextBoxHolder:focus-within {
     border-color: var(--clr-accent-blue);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Subtle blue ring on focus */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
 
 /* Text Box (Input/Textarea) */
 .textBox {
-    width: 100%; /* Fill the container */
-    max-width: none; /* Override old fixed width */
-    padding: 10px 15px; /* Increased padding for better click/touch area and spacing */
+    width: 100%;
+    max-width: none;
+    padding: 10px 15px;
     border: none;
-    border-radius: 6px; /* Match holder but slightly smaller */
-    background-color: transparent; /* Essential for the holder's background to show */
-    color: var(--clr-text-dark); /* Ensure text is readable against the white background */
+    border-radius: 6px;
+    background-color: transparent;
+    color: var(--clr-text-dark);
     font-size: 16px;
     transition: color 0.3s ease;
 }
@@ -140,13 +133,13 @@ textarea:focus {
 
 /* Small Text Box - Use flex-grow: 1 on the inner input to handle smallTextBoxHolder centering */
 .smallTextBoxHolder {
-    max-width: 150px; /* Set a reasonable max width for small inputs */
+    max-width: 350px; /* Adjusted max width */
 }
 
 .smallTextBox {
     width: 100%;
     padding: 8px 10px;
-    margin: 0; /* Remove margin, use padding */
+    margin: 0;
     border-radius: 6px;
     background-color: transparent;
     border: none;
@@ -159,13 +152,13 @@ textarea:focus {
     color: var(--clr-text-dark-mode);
 }
 
-/* Submit Button - Clear, interactive, and attractive */
+/* Submit Button */
 .submitButton {
-    padding: 12px 20px; /* Generous padding */
-    width: 100%; /* Default to full width in container */
-    max-width: 250px; /* Max width to prevent stretching too far */
-    display: block; /* Center the button if less than 100% width */
-    margin: 15px auto 0; /* Center horizontally and add top margin */
+    padding: 12px 20px;
+    width: 100%;
+    max-width: 250px;
+    display: block;
+    margin: 15px auto 0;
     border-radius: 8px;
     border: none;
     background-color: var(--clr-accent-blue);
@@ -180,7 +173,7 @@ textarea:focus {
 .submitButton:hover {
     background-color: var(--clr-accent-hover);
     box-shadow: 0 6px 15px rgba(0, 123, 255, 0.5);
-    transform: translateY(-2px); /* Subtle lift effect */
+    transform: translateY(-2px);
 }
 
 .submitButton:active {
@@ -188,55 +181,61 @@ textarea:focus {
     box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
 }
 
-/* Logo - Adjusted spacing and alignment */
+/* Logo */
 .Logo {
-    display: flex; /* Use flex for simpler centering */
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 0; 
-    margin-bottom: 25px; /* Increased margin for better separation */
+    margin-top: 0;
+    margin-bottom: 25px;
 }
 
-/* Iframe Container - Apply modern glassmorphism effect */
+/* Iframe Container - Increased Height */
 .iframe {
-    /* Use a fixed, darker background for the iframe to stand out */
-    background-color: rgba(30, 30, 45, 0.65); 
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border for the "glass" look */
+    background-color: rgba(30, 30, 45, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
+    margin-top: 30px; /* Added margin to separate it from the form */
     margin-bottom: 20px;
-    padding: 15px; /* Add padding inside the container */
+    padding: 15px;
     display: block;
-    width: 100%; 
-    height: auto; /* Let content dictate height, or set max-height */
+    width: 100%;
+    /* --- Increased Height --- */
+    min-height: 550px; 
+    
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(4px); /* Glassmorphism effect */
-    -webkit-backdrop-filter: blur(4px); /* For Safari */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 iframe {
-    width: 100%; /* iframe inside its container */
-    height: 400px; /* Set a default, reasonable height for the iframe content */
-    border: none; /* Ensure no visible border */
+    width: 100%;
+    /* --- Removed fixed height, letting .iframe min-height control it --- */
+    height: 100%; 
+    border: none;
     border-radius: 15px;
     display: block;
 }
 
 /* Media Queries (Responsive Design) */
-
-/* Target mobile devices up to 768px */
 @media screen and (max-width: 768px) {
     .formContainer {
         width: 100%;
         max-width: none;
-        padding: 20px 15px; /* More compact padding on mobile */
-        border-radius: 0; /* Optional: remove border-radius on full-width mobile form */
+        padding: 20px 15px;
+        border-radius: 0;
     }
 
     .centerContent {
-        padding: 0; /* Remove padding when form is full width */
+        padding: 0;
     }
 
     .textBox {
-        font-size: 14px; /* Slightly smaller text for mobile */
+        font-size: 14px;
+    }
+    
+    .iframe {
+        margin-top: 15px;
+        min-height: 800px; /* Increase height further on mobile to ensure stacking content fits */
     }
 }
