@@ -1,16 +1,3 @@
-
-//import * as THREE from 'three';
-//import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-
-// In your main.js:
-// This path directs the browser to the exact location of the core file
-//import * as THREE from './node_modules/three/build/three.module.js'; 
-
-//import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js';
-
-// You also need to adjust paths for any other imports, like loaders:
-//import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/loaders/GLTFLoader.js';
-
 let scene, camera, renderer, mixer;
 const clock = new THREE.Clock(); // Used for tracking time for the animation mixer
 
@@ -30,6 +17,10 @@ function init() {
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.shadowMap.enabled = true; // Enable shadow maps
     document.body.appendChild(renderer.domElement);
+    
+    // Initialize OrbitControls here if you want to use them
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true; // optional for a smoother feel
 
     // 4. Lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Soft white light
@@ -52,10 +43,11 @@ function onWindowResize() {
 
 //do actual model loading
 function loadModel() {
-    const loader = new GLTFLoader();
+    // GLTFLoader is now available on the global THREE object
+    const loader = new THREE.GLTFLoader(); 
     
     // Replace 'model.glb' with the path to your 3D model file
-    loader.load('model.glb', function (gltf) {
+    loader.load('testModel.glb', function (gltf) {
         const model = gltf.scene;
         scene.add(model);
 
@@ -104,10 +96,16 @@ function animate() {
         mixer.update(delta);
     }
 
+    // If using OrbitControls, update them here
+    // controls.update(delta);
+
     // Render the scene
     renderer.render(scene, camera);
 }
 
 
+// --- EXECUTION ---
 init();
 loadModel();
+animate(); // Start the render loop
+// Note: No closing brace '}' here!
