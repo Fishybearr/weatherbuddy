@@ -1,4 +1,7 @@
 let scene, camera, renderer, mixer;
+// Declare controls globally so it can be updated in the animate function
+let controls; 
+
 const clock = new THREE.Clock(); // Used for tracking time for the animation mixer
 
 function init() {
@@ -18,9 +21,11 @@ function init() {
     renderer.shadowMap.enabled = true; // Enable shadow maps
     document.body.appendChild(renderer.domElement);
     
-    // Initialize OrbitControls here if you want to use them
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true; // optional for a smoother feel
+    // --- FIX: Initialize Controls Here ---
+    // The OrbitControls constructor is now available via the global THREE object
+    controls = new THREE.OrbitControls(camera, renderer.domElement); 
+    controls.enableDamping = true; // Enable damping for a smoother, more professional feel
+    controls.dampingFactor = 0.05;
 
     // 4. Lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Soft white light
@@ -95,17 +100,18 @@ function animate() {
     if (mixer) {
         mixer.update(delta);
     }
-
-    // If using OrbitControls, update them here
-    // controls.update(delta);
+    
+    // Update the controls (required if controls.enableDamping is true)
+    if (controls) {
+        controls.update(); 
+    }
 
     // Render the scene
     renderer.render(scene, camera);
 }
 
 
-// --- EXECUTION ---
+// --- EXECUTION: Start the application ---
 init();
 loadModel();
-animate(); // Start the render loop
-// Note: No closing brace '}' here!
+animate();
