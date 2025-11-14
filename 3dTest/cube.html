@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Three.js Cube with Light</title>
+    <style>
+        /* Remove default margin/padding for a full-screen canvas */
+        body { margin: 0; } 
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script type="module">
+        import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+
+        // --- 1. SETUP THE SCENE, CAMERA, AND RENDERER ---
+        
+        // Scene: The main container
+        const scene = new THREE.Scene();
+
+        // Camera: Defines the user's perspective (Field of View, Aspect Ratio, Near Clipping, Far Clipping)
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 5; // Move the camera back
+
+        // Renderer: Draws the scene onto the canvas
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+
+        // --- 2. CREATE THE CUBE (GEOMETRY + MATERIAL + MESH) ---
+
+        // Geometry: Define the shape (1x1x1 cube)
+        const geometry = new THREE.BoxGeometry(1, 1, 1);
+
+        // Material: Define the appearance. MeshStandardMaterial reacts to lights.
+        const material = new THREE.MeshStandardMaterial({ 
+            color: 0x00ff00, // Green color
+            metalness: 0.1,  // Optional: makes the surface slightly reflective
+            roughness: 0.7   // Optional: how rough the surface is
+        });
+
+        // Mesh: Combine geometry and material to create the object
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+
+        // --- 3. ADD LIGHTS ---
+        
+        // Ambient Light: Soft, overall light. Helps brighten dark areas.
+        const ambientLight = new THREE.AmbientLight(0x404040, 2); // Color, Intensity
+        scene.add(ambientLight);
+
+        // Directional Light: Simulates light from a distant source (like the sun).
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 3); // White color, Intensity
+        directionalLight.position.set(2, 5, 3); // Positioned above and to the front-right
+        scene.add(directionalLight);
+
+
+        // --- 4. THE ANIMATION/RENDER LOOP ---
+
+        // This function is called every screen refresh (typically 60 times per second)
+        function animate() {
+            // Request the browser to call 'animate' again on the next frame
+            requestAnimationFrame(animate); 
+
+            // Update the cube's rotation for animation
+            cube.rotation.x += 0.005;
+            cube.rotation.y += 0.01;
+
+            // Render the scene from the camera's perspective
+            renderer.render(scene, camera);
+        }
+
+        // Start the loop
+        animate();
+
+
+        // --- 5. HANDLE RESIZING ---
+        
+        // Ensures the scene looks correct when the browser window is resized
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+    </script>
+</body>
+</html>

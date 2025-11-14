@@ -33,6 +33,7 @@ function init() {
     controls = new OrbitControls(camera, renderer.domElement); 
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
+    controls.target.set(0,4,0); //set the target for the orbit camera
 
     // 4. Lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); 
