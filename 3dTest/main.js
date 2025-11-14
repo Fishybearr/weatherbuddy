@@ -1,8 +1,12 @@
-import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
-import { GLTFLoader } from 'https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js';
-import { OrbitControls } from 'https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+// main.js
 
-// Global variables for Three.js components
+// Using esm.sh to resolve internal module dependencies correctly in the browser.
+// Note: The structure is similar to unpkg, but the internal dependency resolution is better.
+import * as THREE from 'https://esm.sh/three@0.160.0';
+import { GLTFLoader } from 'https://esm.sh/three@0.160.0/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'https://esm.sh/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+
+
 let scene, camera, renderer, mixer;
 let controls; 
 
@@ -25,7 +29,7 @@ function init() {
     renderer.shadowMap.enabled = true; 
     document.body.appendChild(renderer.domElement);
     
-    // Initialize Controls: Accessed directly because it was imported
+    // Initialize Controls (accessed directly since it was imported as { OrbitControls })
     controls = new OrbitControls(camera, renderer.domElement); 
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
@@ -50,7 +54,7 @@ function onWindowResize() {
 }
 
 function loadModel() {
-    // GLTFLoader is accessed directly because it was imported
+    // GLTFLoader is accessed directly since it was imported as { GLTFLoader }
     const loader = new GLTFLoader(); 
     
     loader.load('testModel.glb', function (gltf) {
